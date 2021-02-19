@@ -22,6 +22,23 @@ request.onsuccess = function (event) {
 };
  
 request.onerror = function (event) {
-    console.log("erro");
+    console.log("error");
 
 };
+
+function saveRecord (record) {
+
+// create transaction on pending db
+const transaction = db.transaction (["pending"], "readwrite");
+
+// access object store
+
+const budgetStore = transaction.objectStore("pending"); 
+
+// add record to store with add method
+
+budgetStore.add(record);
+
+}
+
+
